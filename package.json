@@ -1,0 +1,85 @@
+{
+  "name": "test-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@manaflair/redux-batch": "^1.0.0",
+    "@reduxjs/toolkit": "^1.4.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-custom-scrollbars": "^4.0.7",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-virtualized-auto-sizer": "^1.0.0",
+    "@types/react-window": "^1.8.2",
+    "@types/redux-logger": "^3.0.8",
+    "@types/styled-components": "^5.1.2",
+    "classnames": "^2.2.6",
+    "react": "^16.13.1",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "react-scripts": "3.4.3",
+    "react-virtualized-auto-sizer": "^1.0.2",
+    "react-window": "^1.8.5",
+    "redux-observable": "^1.2.0",
+    "styled-components": "^5.1.1",
+    "styled-components-breakpoint": "^3.0.0-preview.20",
+    "typescript": "~3.7.2"
+  },
+  "devDependencies": {
+    "cypress": "^5.0.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "http-server": "^0.12.3",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.13",
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.1.1",
+    "prettier-eslint": "11.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "serve": "npx http-server ./build -p 3000 -P https://www.binance.com -c-1 --silent",
+    "prettier": "npx prettier --write ./{src,cypress}/**/*",
+    "cypress": "npx cypress open",
+    "cypress:open": "run-p --race serve cypress"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "react-app",
+      "prettier"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "https://www.binance.com",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}
