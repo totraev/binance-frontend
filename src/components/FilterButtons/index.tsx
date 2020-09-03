@@ -75,7 +75,7 @@ export const FilterButtons: FC<ComponentProps> = memo(
             onMenuItemSelect={handleDropdownSelect(marketItem.market)}
           >
             {marketItem.market === selectedMarket
-              ? selectedCategory ?? selectedMarket
+              ? selectedCategory || selectedMarket
               : marketItem.market}
           </DropdownButton>
         ))}
