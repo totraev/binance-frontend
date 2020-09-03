@@ -28,17 +28,10 @@ export const fetchProductsEpic: Epic = (action$, _, api) =>
     filter(fetchProducts.match),
     switchMap(() =>
       concat(
-        of(startLoading()),
+        of(setError(''), startLoading()),
         api.products.getProducts().pipe(
-          mergeMap((products) => of(
-            setProducts(products),
-            stopLoading(),
-            connectProductUpdates()
-          )),
-          catchError((err) => of(
-            setError(err.message),
-            stopLoading()
-          ))
+          mergeMap((products) => of(setProducts(products), stopLoading(), connectProductUpdates())),
+          catchError((err) => of(setError(err.message), stopLoading()))
         )
       )
     )
@@ -53,11 +46,7 @@ export const productUpdatesEpic: Epic = (action$, state$, api) =>
         api.products.getProductUpdates().pipe(
           mergeMap((updates) =>
             state$.value.app.updatesStatus === UpdatesStatus.Connecting
-              ? of(
-                  updateProducts(updates),
-                  setUpdatesStatus(UpdatesStatus.Connected), 
-                  setError('')
-                )
+              ? of(updateProducts(updates), setUpdatesStatus(UpdatesStatus.Connected))
               : of(updateProducts(updates))
           ),
           takeUntil(
@@ -70,7 +59,7 @@ export const productUpdatesEpic: Epic = (action$, state$, api) =>
             concat(
               of(setUpdatesStatus(UpdatesStatus.Disconnected)),
               of(setError(err.message)),
-              of(connectProductUpdates()).pipe(delay(RECONNECT_TIMEOUT))
+              of(fetchProducts()).pipe(delay(RECONNECT_TIMEOUT))
             )
           )
         )
