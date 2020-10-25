@@ -1,5 +1,5 @@
-import { SortField, SortOrder } from 'interfaces/application';
-import { Product } from 'interfaces/product';
+import { SortingField, SortingOrder } from 'interfaces/application';
+import { Product } from 'models/entities/Product';
 
 export function compareProductSymbols(a: Product, b: Product) {
   const result = a.baseAsset.localeCompare(b.baseAsset);
@@ -7,17 +7,17 @@ export function compareProductSymbols(a: Product, b: Product) {
   return result !== 0 ? result : a.quoteAsset.localeCompare(b.quoteAsset);
 }
 
-export function createProductComparator(sortField: SortField, sortOrder: SortOrder) {
+export function createProductComparator(sortField: SortingField, sortOrder: SortingOrder) {
   return (a: Product, b: Product) => {
     switch (sortField) {
-      case SortField.Symbol:
-        return sortOrder === SortOrder.ASC
+      case SortingField.Symbol:
+        return sortOrder === SortingOrder.ASC
           ? compareProductSymbols(a, b)
           : compareProductSymbols(b, a);
-      case SortField.LastPrice:
-      case SortField.Volume:
-      case SortField.Change:
-        return sortOrder === SortOrder.ASC
+      case SortingField.LastPrice:
+      case SortingField.Volume:
+      case SortingField.Change:
+        return sortOrder === SortingOrder.ASC
           ? a[sortField] - b[sortField]
           : b[sortField] - a[sortField];
       default:

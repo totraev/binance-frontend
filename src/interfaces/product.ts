@@ -1,5 +1,3 @@
-import { Update } from '@reduxjs/toolkit';
-
 export interface ProductResponse {
   code: string;
   message: string;
@@ -11,6 +9,11 @@ export interface ProductResponse {
 export interface ProductStreamResponse {
   data: ProductStreamData[];
   stream: string;
+}
+
+export interface Market {
+  market: string;
+  categories: string[];
 }
 
 export interface ProductData {
@@ -38,16 +41,3 @@ export interface ProductStreamData {
   q: string;
   v: string;
 }
-
-export interface Product {
-  symbol: string;
-  parentMarket: string;
-  baseAsset: string;
-  quoteAsset: string;
-  lastPrice: number;
-  change: number;
-  volume: number;
-  decimals: number;
-}
-
-export type ProductUpdate = Update<Product>;

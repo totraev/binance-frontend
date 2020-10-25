@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { configure } from 'mobx';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
+import 'reflect-metadata';
 
-import { App } from './components/App';
+import { App } from './views/components/App';
 
 import * as serviceWorker from './serviceWorker';
 import { GlobalStyles } from './index.styled';
-import { createStore } from './store/createStore';
 
-const store = createStore();
+configure({ enforceActions: 'always' });
 
 const theme: DefaultTheme = {
   breakpoints: {
@@ -21,13 +21,11 @@ const theme: DefaultTheme = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
 
-        <App />
-      </ThemeProvider>
-    </Provider>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

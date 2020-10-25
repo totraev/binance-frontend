@@ -3,19 +3,19 @@ export enum DisplayVolume {
   Volume = 'volume',
 }
 
-export enum SortOrder {
+export enum SortingOrder {
   DESC = 'desc',
   ASC = 'asc',
 }
 
-export enum SortField {
+export enum SortingField {
   Symbol = 'symbol',
   LastPrice = 'lastPrice',
   Volume = 'volume',
   Change = 'change',
 }
 
-export enum UpdatesStatus {
+export enum StatusUpdates {
   Connected,
   Connecting,
   Disconnected,
@@ -23,14 +23,14 @@ export enum UpdatesStatus {
 
 export interface ApplicationState {
   isLoading: boolean;
-  updatesStatus: UpdatesStatus;
+  updatesStatus: StatusUpdates;
   displayFavorites: boolean;
   selectedMarket: string;
   selectedCategory: string;
   search: string;
   type: DisplayVolume;
-  sortField: SortField;
-  sortOrder: SortOrder;
+  sortField: SortingField;
+  sortOrder: SortingOrder;
   favorites: { [symbol: string]: boolean };
   error: string;
 }
@@ -41,6 +41,6 @@ export interface Market {
 }
 
 export interface SortPayload {
-  field: SortField;
-  order: SortOrder;
+  field: SortingField;
+  order: SortingOrder;
 }

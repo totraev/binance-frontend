@@ -15,7 +15,9 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": "src",
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["src"]
 }
